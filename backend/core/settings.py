@@ -53,12 +53,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'djongo',
         'NAME': os.environ.get('DB_NAME', 'playto_payout'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': os.environ.get('MONGO_URI', 'mongodb://localhost:27017'),
+            'username': os.environ.get('DB_USER', ''),
+            'password': os.environ.get('DB_PASSWORD', ''),
+        }
     }
 }
 
